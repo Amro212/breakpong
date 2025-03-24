@@ -502,7 +502,7 @@ while running:
 
         # Score
         score_text = score_font.render(f"{score_left} : {score_right}", True, WHITE)
-        score_rect = score_text.get_rect(center=(WIDTH // 2, 30))
+        score_rect = score_text.get_rect(center=(WIDTH // 2, 35))
         screen.blit(score_text, score_rect)
 
         elapsed = pygame.time.get_ticks() - timer_start
@@ -605,7 +605,7 @@ while running:
 
         # Score
         score_text = score_font.render(f"{score_left} : {score_right}", True, WHITE)
-        score_rect = score_text.get_rect(center=(WIDTH // 2, 30))
+        score_rect = score_text.get_rect(center=(WIDTH // 2, 35))
         screen.blit(score_text, score_rect)
 
         draw_button(exit_button_rect, "EXIT")
@@ -619,7 +619,7 @@ while running:
             pygame.draw.rect(screen, brick_color, brick_rect)
 
         score_text = score_font.render(f"{score_left} : {score_right}", True, WHITE)
-        score_rect = score_text.get_rect(center=(WIDTH // 2, 30))
+        score_rect = score_text.get_rect(center=(WIDTH // 2, 35))
         screen.blit(score_text, score_rect)
 
         if pygame.time.get_ticks() - timer_start >= 1000:
