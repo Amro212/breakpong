@@ -538,24 +538,33 @@ while running:
         # --- NEW: Spin logic ---
         # Check collisions with paddles
         if ball.colliderect(paddle_left):
+            MAX_SPEED = 6
             ball_dx = abs(ball_dx)
             last_hit = "left"
             # Add spin while maintaining constant speed
-            ball_dy += paddle_left_speed * 0.3
+            ball_dy += paddle_left_speed * 0.1  # Reduced multiplier
+            ball_dy += (paddle_left.centery - ball.centery) * 0.05  # Angle adjustment
+            ball.x += 5  # Move the ball slightly away from the paddle
+
             # Normalize the speed
             speed = (ball_dx * ball_dx + ball_dy * ball_dy) ** 0.5
-            ball_dx = ball_dx * BALL_SPEED / speed
-            ball_dy = ball_dy * BALL_SPEED / speed
+            if speed > MAX_SPEED:
+                ball_dx = (ball_dx / speed) * MAX_SPEED
+                ball_dy = (ball_dy / speed) * MAX_SPEED
 
         if ball.colliderect(paddle_right):
             ball_dx = -abs(ball_dx)
             last_hit = "right"
             # Add spin while maintaining constant speed
-            ball_dy += paddle_right_speed * 0.3
+            ball_dy += paddle_right_speed * 0.1  # Reduced multiplier
+            ball_dy += (paddle_right.centery - ball.centery) * 0.05  # Angle adjustment
+            ball.x -= 5  # Move the ball slightly away from the paddle
+
             # Normalize the speed
             speed = (ball_dx * ball_dx + ball_dy * ball_dy) ** 0.5
-            ball_dx = ball_dx * BALL_SPEED / speed
-            ball_dy = ball_dy * BALL_SPEED / speed
+            if speed > MAX_SPEED:
+                ball_dx = (ball_dx / speed) * MAX_SPEED
+                ball_dy = (ball_dy / speed) * MAX_SPEED
 
         # Lost round
         if ball.left <= 0:
@@ -625,6 +634,7 @@ while running:
         if pygame.time.get_ticks() - timer_start >= 1000:
             if current_state == STATE_GRACE:
                 current_state = STATE_GAME
+                create_bricks()  # to regenerate blocks after each round
 
         draw_button(exit_button_rect, "EXIT")
 
