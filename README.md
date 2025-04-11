@@ -5,7 +5,7 @@ BreakPong is a retro-style arcade game inspired by classic Pong mechanics, featu
 
 ## How to Launch the Game
 1. Navigate to the `dist` folder in your project directory.
-2. Locate the `backupmain.exe` file.
-3. Double-click on `backupmain.exe` to launch the game.
+2. Locate the `breakpong.exe` file.
+3. Double-click on `breakpong.exe` to launch the game.
 
 Enjoy playing BreakPong!
